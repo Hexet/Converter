@@ -36,7 +36,7 @@ namespace WinFormInterface
             {
                 if (_view.InitialNumber != String.Empty)
                 {
-                    _view.Result = _converter.Transform(_view.P1, _view.P2, _view.InitialNumber);
+                    _view.Result = _converter.ConvertNumber(_view.P1, _view.P2, _view.InitialNumber);
                     _history.WriteToHistory(String.Format("{0}: {1} => {2}: {3}", Convert.ToString(_view.P1), _view.InitialNumber, Convert.ToString(_view.P2), _view.Result));
                 }
             }
