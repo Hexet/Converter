@@ -21,11 +21,12 @@ namespace ClassLibrary
             if (p1 > 1 && p1 < 10)
                 str_base = Convert.ToString(p1);
             else
-                if (p1 > 9 && p1 < 16) ;
+                if (p1 > 9 && p1 < 17) 
             {
                 str_base = Convert.ToString((char)(p1 + 55));
             }
 
+            
 
             for (int i = 0; i < strnum.Length; i++)
             {
@@ -38,24 +39,34 @@ namespace ClassLibrary
 
         public string ConvertNumber(int p1, int p2, string strnum) //основная функция, которой пользуется пользователь
         {
-            strnum = ConvertBaseTo10(p1, strnum); //возвращает пустую строку если что-то было не так с данными
-
-            if (strnum != "")
-                strnum = Convert10ToBase(p2, strnum);
+            if (p1 == p2)
+            {
+                return strnum;
+            }
             else
-                strnum = "Некорректно введено число"; //сообщение чтобы отслеживать
+            {
+                strnum = ConvertBaseTo10(p1, strnum); //возвращает пустую строку если что-то было не так с данными
+
+                if (strnum != "")
+                    strnum = Convert10ToBase(p2, strnum);
+                else
+                {
+                    strnum = "Некорректно введено число"; //сообщение чтобы отслеживать
+                }
 
 
-            return strnum;
+                return strnum;
+            }
 
         }
         private string Convert10ToBase(int p2, string strnum)
         {
-            int num1 = 0, flag = 0;
+            int flag = 0;
             string str1, str2 = "", str_res1 = "", str_res2 = "", str_buf, str_res;
-            int num_res1 = 0;
+            
             double num2 = 0, num_res2 = 0;
 
+            int num1 = 0, num_res1 = 0;
 
             for (int i = 0; i < strnum.Length && flag != 1; i++)
             {
@@ -79,7 +90,7 @@ namespace ClassLibrary
             if (strnum[0] == '-')
             {
                 flag_minus = 1;
-                num1 *= -1;
+                
             }
 
 
@@ -101,10 +112,22 @@ namespace ClassLibrary
 
                 num1 = num1 / p2;
             }
+
+
+
             num_res1 = num1;
 
 
-            str_buf = Convert.ToString(num_res1);
+            if (num_res1 < 16 && num_res1 > 9) 
+            {
+                num_res1 += 55;
+                str_buf = Convert.ToString((char)num_res1);
+            }
+            else
+                str_buf = Convert.ToString(num_res1);
+
+
+
             str_res1 += str_buf;
 
             char[] s1 = str_res1.ToCharArray();
@@ -124,7 +147,7 @@ namespace ClassLibrary
 
             if (flag == 1)
             {
-                str2 = "0," + str2;
+                //str2 = "0," + str2;
 
                 num2 = double.Parse(str2);
 
@@ -162,9 +185,9 @@ namespace ClassLibrary
         private string ConvertBaseTo10(int p1, string strnum)
         {
 
-            int num = 0, mod, k = 0, flag_sym = 0, check_num = 0;
+            int mod, k = 0, flag_sym = 0, check_num = 0;
 
-            double numres = 0;
+            double numres = 0, num = 0;
 
             int i = 0, count = 0;
 
