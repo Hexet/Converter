@@ -19,6 +19,7 @@ namespace WinFormInterface
         int P2 { get; }
         event EventHandler ExecutClick;
         event EventHandler HistoryClick;
+        event EventHandler HelpClick;
     }
 
 
@@ -55,6 +56,12 @@ namespace WinFormInterface
             butDel.Click += ButDel_Click;
             butCE.Click += ButCE_Click;
             butPoint.Click += ButPoint_Click;
+            butHelp.Click += ButHelp_Click;
+        }
+
+        private void ButHelp_Click(object sender, EventArgs e)
+        {
+            HelpClick(this, null);
         }
 
         private void ButPoint_Click(object sender, EventArgs e)
@@ -304,5 +311,6 @@ namespace WinFormInterface
 
         public event EventHandler ExecutClick;
         public event EventHandler HistoryClick;
+        public event EventHandler HelpClick;
     }
 }

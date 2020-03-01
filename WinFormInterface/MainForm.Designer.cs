@@ -57,6 +57,8 @@
             this.butExecut = new System.Windows.Forms.Button();
             this.numP1 = new System.Windows.Forms.NumericUpDown();
             this.numP2 = new System.Windows.Forms.NumericUpDown();
+            this.descriptionP1 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackP1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackP2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numP1)).BeginInit();
@@ -466,12 +468,36 @@
             0,
             0});
             // 
+            // descriptionP1
+            // 
+            this.descriptionP1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.descriptionP1.Location = new System.Drawing.Point(45, 143);
+            this.descriptionP1.Name = "descriptionP1";
+            this.descriptionP1.ReadOnly = true;
+            this.descriptionP1.Size = new System.Drawing.Size(254, 13);
+            this.descriptionP1.TabIndex = 29;
+            this.descriptionP1.TabStop = false;
+            this.descriptionP1.Text = "Основание системы счисления исходного числа";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(70, 267);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(229, 13);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.TabStop = false;
+            this.textBox1.Text = "Основание системы счисления результата";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(353, 487);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.descriptionP1);
             this.Controls.Add(this.numP2);
             this.Controls.Add(this.numP1);
             this.Controls.Add(this.butExecut);
@@ -546,7 +572,8 @@
         private System.Windows.Forms.Button butExecut;
         private System.Windows.Forms.NumericUpDown numP1;
         private System.Windows.Forms.NumericUpDown numP2;
-
+        private System.Windows.Forms.TextBox descriptionP1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

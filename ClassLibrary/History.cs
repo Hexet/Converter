@@ -11,7 +11,7 @@ namespace ClassLibrary
     public interface IHistory
     {
         void WriteToHistory(string data);
-        string GetContent();
+        string Content { get; }
         void OpenFile();
     }
     public class History: IHistory
@@ -25,13 +25,15 @@ namespace ClassLibrary
             }
         }
 
-        public string GetContent()
+        public string Content
         {
-            if (!File.Exists(writePath))
-            {
-                return "File not exist";
-            }
-            return File.ReadAllText(writePath, System.Text.Encoding.Default);
+            get {
+                if (!File.Exists(writePath))
+                {
+                    return "File not exist";
+                }
+                return File.ReadAllText(writePath, System.Text.Encoding.Default);
+                }
         }
 
         public History()

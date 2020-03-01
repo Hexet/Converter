@@ -21,12 +21,12 @@ namespace ClassLibrary
             if (p1 > 1 && p1 < 10)
                 str_base = Convert.ToString(p1);
             else
-                if (p1 > 9 && p1 < 17) 
+                if (p1 > 9 && p1 < 17)
             {
                 str_base = Convert.ToString((char)(p1 + 55));
             }
 
-            
+
 
             for (int i = 0; i < strnum.Length; i++)
             {
@@ -63,7 +63,7 @@ namespace ClassLibrary
         {
             int flag = 0;
             string str1, str2 = "", str_res1 = "", str_res2 = "", str_buf, str_res;
-            
+
             double num2 = 0, num_res2 = 0;
 
             int num1 = 0, num_res1 = 0;
@@ -90,7 +90,7 @@ namespace ClassLibrary
             if (strnum[0] == '-')
             {
                 flag_minus = 1;
-                
+
             }
 
 
@@ -118,7 +118,7 @@ namespace ClassLibrary
             num_res1 = num1;
 
 
-            if (num_res1 < 16 && num_res1 > 9) 
+            if (num_res1 < 16 && num_res1 > 9)
             {
                 num_res1 += 55;
                 str_buf = Convert.ToString((char)num_res1);
@@ -147,7 +147,7 @@ namespace ClassLibrary
 
             if (flag == 1)
             {
-                //str2 = "0," + str2;
+                str2 = "0," + str2;
 
                 num2 = double.Parse(str2);
 
@@ -179,6 +179,15 @@ namespace ClassLibrary
             /* РАЗБИРАЕМСЯ С ДРОБНОЙ ЧАСТЬЮ */
 
             //Console.WriteLine(str_res);
+
+            int j = str_res.Length - 1;
+            while (str_res[j] == '0')
+                j--;
+
+
+            if (j != str_res.Length - 1)
+                str_res = str_res.Remove(j + 1);
+
             return str_res;
 
         }
