@@ -19,6 +19,7 @@ namespace WinFormInterface
         int P2 { get; }
         event EventHandler ExecutClick;
         event EventHandler HistoryClick;
+        event EventHandler HelpClick;
     }
 
 
@@ -27,6 +28,7 @@ namespace WinFormInterface
         public MainForm()
         {
             InitializeComponent();
+            sourceTextBox.Text = "0";
             butExecut.Click += ButExecut_Click;
             numP1.ValueChanged += NumP1_ValueChanged;
             numP2.ValueChanged += NumP2_ValueChanged;
@@ -54,12 +56,18 @@ namespace WinFormInterface
             butDel.Click += ButDel_Click;
             butCE.Click += ButCE_Click;
             butPoint.Click += ButPoint_Click;
+            butHelp.Click += ButHelp_Click;
+        }
+
+        private void ButHelp_Click(object sender, EventArgs e)
+        {
+            HelpClick(this, null);
         }
 
         private void ButPoint_Click(object sender, EventArgs e)
         {
-            if (sourceTextBox.Text == String.Empty)
-                sourceTextBox.Text += "0.";
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = "0.";
             else
                 if (!sourceTextBox.Text.Contains("."))
                     sourceTextBox.Text += ".";
@@ -67,92 +75,127 @@ namespace WinFormInterface
 
         private void ButCE_Click(object sender, EventArgs e)
         {
-            sourceTextBox.Text = String.Empty;
+            sourceTextBox.Text = "0";
+            resultTextBox.Text = "0";
         }
 
         private void ButDel_Click(object sender, EventArgs e)
         {
             if (sourceTextBox.Text != String.Empty)
+            {
                 sourceTextBox.Text = sourceTextBox.Text.Substring(0, sourceTextBox.Text.Length - 1);
+                if (sourceTextBox.Text == String.Empty)
+                    sourceTextBox.Text = "0";
+            }
         }
 
         private void ButF_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'F';
         }
 
         private void ButE_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'E';
         }
 
         private void ButD_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'D';
         }
 
         private void ButC_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'C';
         }
 
         private void ButB_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'B';
         }
 
         private void ButA_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 'A';
         }
 
         private void But9_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 9;
         }
 
         private void But8_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 8;
         }
 
         private void But7_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 7;
         }
 
         private void But6_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 6;
         }
 
         private void But5_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 5;
         }
 
         private void But4_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 4;
         }
 
         private void But3_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 3;
         }
 
         private void But2_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 2;
         }
 
         private void But1_Click(object sender, EventArgs e)
         {
+            if (sourceTextBox.Text == "0")
+                sourceTextBox.Text = String.Empty;
             sourceTextBox.Text += 1;
         }
         private void But0_Click(object sender, EventArgs e)
         {
-            if (sourceTextBox.Text != String.Empty)
+            if (sourceTextBox.Text != "0")
                 sourceTextBox.Text += 0;
         }
 
@@ -161,13 +204,31 @@ namespace WinFormInterface
             if (e.KeyData == Keys.Enter)
                 ExecutClick(butExecut, null);
             if (e.KeyData == Keys.Back && sourceTextBox.Text != String.Empty)
+            {
                 sourceTextBox.Text = sourceTextBox.Text.Substring(0, sourceTextBox.Text.Length - 1);
+                if (sourceTextBox.Text == String.Empty)
+                    sourceTextBox.Text = "0";
+            }
             if (e.KeyValue > 47 && e.KeyValue < 58 && trackP1.Value > e.KeyValue - 48)
+            {
+                if (sourceTextBox.Text == "0")
+                    sourceTextBox.Text = String.Empty;
                 sourceTextBox.Text += e.KeyValue - 48;
+            }
             if (e.KeyValue > 64 && e.KeyValue < 71 && trackP1.Value > e.KeyValue - 55)
-                sourceTextBox.Text += e.KeyData;
+            {
+                if (sourceTextBox.Text == "0")
+                    sourceTextBox.Text = String.Empty;
+                sourceTextBox.Text += (char)e.KeyValue;
+            }
             if (e.KeyData == Keys.OemPeriod)
+            {
+                if (sourceTextBox.Text == "0")
+                    sourceTextBox.Text = String.Empty;
                 ButPoint_Click(this, null);
+            }
+            if (e.KeyData == Keys.Delete)
+                ButCE_Click(this, null);
         }
 
         private void ButHistory_Click(object sender, EventArgs e)
@@ -250,5 +311,6 @@ namespace WinFormInterface
 
         public event EventHandler ExecutClick;
         public event EventHandler HistoryClick;
+        public event EventHandler HelpClick;
     }
 }
