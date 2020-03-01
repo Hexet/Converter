@@ -53,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(296, 450);
             this.Controls.Add(this.textBox);
             this.Name = "InfoForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InfoForm";
             this.ResumeLayout(false);
             this.PerformLayout();

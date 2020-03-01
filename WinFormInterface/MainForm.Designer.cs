@@ -531,6 +531,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Конвертер";
             ((System.ComponentModel.ISupportInitialize)(this.trackP1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackP2)).EndInit();
