@@ -8,13 +8,13 @@ namespace ClassLibrary
 {
     public interface IConverter
     {
-        string ConvertNumber(int p1, int p2, string num);
+        string ConvertNumber(UInt64 p1, UInt64 p2, string num);
     }
 
     public class Converter : IConverter
     {
 
-        private int checkNumBase(int p1, string strnum) //проверяем, что все цифры меньше основания системы счисления: 1 - все ок, 0 - входные данные неверные
+        private int checkNumBase(UInt64 p1, string strnum) //проверяем, что все цифры меньше основания системы счисления: 1 - все ок, 0 - входные данные неверные
         {
             string str_base = "";
 
@@ -37,7 +37,7 @@ namespace ClassLibrary
             return 1;
         }
 
-        public string ConvertNumber(int p1, int p2, string strnum) //основная функция, которой пользуется пользователь
+        public string ConvertNumber(UInt64 p1, UInt64 p2, string strnum) //основная функция, которой пользуется пользователь
         {
             if (p1 == p2)
             {
@@ -59,14 +59,14 @@ namespace ClassLibrary
             }
 
         }
-        private string Convert10ToBase(int p2, string strnum)
+        private string Convert10ToBase(UInt64 p2, string strnum)
         {
             int flag = 0;
             string str1, str2 = "", str_res1 = "", str_res2 = "", str_buf, str_res;
 
             double num2 = 0, num_res2 = 0;
 
-            int num1 = 0, num_res1 = 0;
+            UInt64 num1 = 0, num_res1 = 0;
 
             for (int i = 0; i < strnum.Length && flag != 1; i++)
             {
@@ -79,11 +79,11 @@ namespace ClassLibrary
                 string[] nums = strnum.Split(',');
                 str1 = nums[0];
                 str2 = nums[1];
-                num1 = int.Parse(str1);
-                num2 = double.Parse(str2);
+                num1 = UInt64.Parse(str1);
+                num2 = double.Parse("0," + str2);
             }
             else
-                num1 = int.Parse(strnum);
+                num1 = UInt64.Parse(strnum);
 
 
             int flag_minus = 0;
@@ -147,13 +147,13 @@ namespace ClassLibrary
 
             if (flag == 1)
             {
-                str2 = "0," + str2;
+                
 
-                num2 = double.Parse(str2);
+                
 
 
 
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     num2 = num2 * p2;
 
@@ -180,18 +180,21 @@ namespace ClassLibrary
 
             //Console.WriteLine(str_res);
 
-            int j = str_res.Length - 1;
-            while (str_res[j] == '0')
-                j--;
+            if (flag == 1)
+            {
+                int j = str_res.Length - 1;
+                while (str_res[j] == '0')
+                    j--;
 
 
-            if (j != str_res.Length - 1)
-                str_res = str_res.Remove(j + 1);
+                if (j != str_res.Length - 1)
+                    str_res = str_res.Remove(j + 1);
+            }
 
             return str_res;
 
         }
-        private string ConvertBaseTo10(int p1, string strnum)
+        private string ConvertBaseTo10(UInt64 p1, string strnum)
         {
 
             int mod, k = 0, flag_sym = 0, check_num = 0;
@@ -207,13 +210,13 @@ namespace ClassLibrary
             }
 
 
-            strnum = strnum.Replace('.', ',');
+            strnum = strnum.Replace(',', '.');
 
             while (i < strnum.Length)
             {
 
 
-                if (strnum[i] == ',')
+                if (strnum[i] == '.')
                 {
 
                     count = strnum.Length - i - 1;
@@ -232,7 +235,7 @@ namespace ClassLibrary
 
             check_num = checkNumBase(p1, strnum);
 
-            if (strnum[0] == '0' && strnum[1] != ',')
+            if (strnum[0] == '0' && strnum[1] != '.')
                 check_num = 0;
 
 
