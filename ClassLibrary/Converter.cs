@@ -8,13 +8,13 @@ namespace ClassLibrary
 {
     public interface IConverter
     {
-        string ConvertNumber(UInt64 p1, UInt64 p2, string num);
+        string ConvertNumber(int p1, int p2, string num);
     }
 
     public class Converter : IConverter
     {
 
-        private int checkNumBase(UInt64 p1, string strnum) //проверяем, что все цифры меньше основания системы счисления: 1 - все ок, 0 - входные данные неверные
+        private int checkNumBase(int p1, string strnum) //проверяем, что все цифры меньше основания системы счисления: 1 - все ок, 0 - входные данные неверные
         {
             string str_base = "";
 
@@ -37,7 +37,7 @@ namespace ClassLibrary
             return 1;
         }
 
-        public string ConvertNumber(UInt64 p1, UInt64 p2, string strnum) //основная функция, которой пользуется пользователь
+        public string ConvertNumber(int p1, int p2, string strnum) //основная функция, которой пользуется пользователь
         {
             if (p1 == p2)
             {
@@ -59,7 +59,7 @@ namespace ClassLibrary
             }
 
         }
-        private string Convert10ToBase(UInt64 p2, string strnum)
+        private string Convert10ToBase(int p2, string strnum)
         {
             int flag = 0;
             string str1, str2 = "", str_res1 = "", str_res2 = "", str_buf, str_res;
@@ -96,9 +96,9 @@ namespace ClassLibrary
 
 
             /* РАЗБИРАЕМСЯ С ЦЕЛОЙ ЧАСТЬЮ */
-            while (num1 >= p2)
+            while (num1 >= (UInt64)p2)
             {
-                num_res1 = num1 % p2;
+                num_res1 = num1 % (UInt64)p2;
 
                 if (num_res1 >= 10 && num_res1 <= 15)
                 {
@@ -110,7 +110,7 @@ namespace ClassLibrary
 
                 str_res1 += str_buf;
 
-                num1 = num1 / p2;
+                num1 = num1 / (UInt64)p2;
             }
 
 
@@ -194,7 +194,7 @@ namespace ClassLibrary
             return str_res;
 
         }
-        private string ConvertBaseTo10(UInt64 p1, string strnum)
+        private string ConvertBaseTo10(int p1, string strnum)
         {
 
             int mod, k = 0, flag_sym = 0, check_num = 0;
