@@ -26,8 +26,6 @@ namespace ClassLibrary
                 str_base = Convert.ToString((char)(p1 + 55));
             }
 
-
-
             for (int i = 0; i < strnum.Length; i++)
             {
                 if (strnum[i] >= str_base[0])

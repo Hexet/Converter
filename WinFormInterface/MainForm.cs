@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace WinFormInterface
 {
@@ -29,6 +30,7 @@ namespace WinFormInterface
         {
             InitializeComponent();
             sourceTextBox.Text = "0";
+            resultTextBox.Text = "0";
             butExecut.Click += ButExecut_Click;
             numP1.ValueChanged += NumP1_ValueChanged;
             numP2.ValueChanged += NumP2_ValueChanged;
@@ -37,22 +39,22 @@ namespace WinFormInterface
             butExit.Click += Exit_Click;
             butHistory.Click += ButHistory_Click;
             this.KeyDown += MainForm_KeyDown;
-            but0.Click += But0_Click;
-            but1.Click += But1_Click;
-            but2.Click += But2_Click;
-            but3.Click += But3_Click;
-            but4.Click += But4_Click;
-            but5.Click += But5_Click;
-            but6.Click += But6_Click;
-            but7.Click += But7_Click;
-            but8.Click += But8_Click;
-            but9.Click += But9_Click;
-            butA.Click += ButA_Click;
-            butB.Click += ButB_Click;
-            butC.Click += ButC_Click;
-            butD.Click += ButD_Click;
-            butE.Click += ButE_Click;
-            butF.Click += ButF_Click;
+            but0.Click += But_Click;
+            but1.Click += But_Click;
+            but2.Click += But_Click;
+            but3.Click += But_Click;
+            but4.Click += But_Click;
+            but5.Click += But_Click;
+            but6.Click += But_Click;
+            but7.Click += But_Click;
+            but8.Click += But_Click;
+            but9.Click += But_Click;
+            butA.Click += But_Click;
+            butB.Click += But_Click;
+            butC.Click += But_Click;
+            butD.Click += But_Click;
+            butE.Click += But_Click;
+            butF.Click += But_Click;
             butDel.Click += ButDel_Click;
             butCE.Click += ButCE_Click;
             butPoint.Click += ButPoint_Click;
@@ -89,114 +91,11 @@ namespace WinFormInterface
             }
         }
 
-        private void ButF_Click(object sender, EventArgs e)
+        private void But_Click(object sender, EventArgs e)
         {
             if (sourceTextBox.Text == "0")
                 sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'F';
-        }
-
-        private void ButE_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'E';
-        }
-
-        private void ButD_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'D';
-        }
-
-        private void ButC_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'C';
-        }
-
-        private void ButB_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'B';
-        }
-
-        private void ButA_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 'A';
-        }
-
-        private void But9_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 9;
-        }
-
-        private void But8_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 8;
-        }
-
-        private void But7_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 7;
-        }
-
-        private void But6_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 6;
-        }
-
-        private void But5_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 5;
-        }
-
-        private void But4_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 4;
-        }
-
-        private void But3_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 3;
-        }
-
-        private void But2_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 2;
-        }
-
-        private void But1_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text == "0")
-                sourceTextBox.Text = String.Empty;
-            sourceTextBox.Text += 1;
-        }
-        private void But0_Click(object sender, EventArgs e)
-        {
-            if (sourceTextBox.Text != "0")
-                sourceTextBox.Text += 0;
+            sourceTextBox.Text += (sender as Button).Text;
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -250,7 +149,7 @@ namespace WinFormInterface
         {
             numP1.Value = trackP1.Value;
             Enabled_Num();
-            sourceTextBox.Text = String.Empty;
+            sourceTextBox.Text = "0";
         }
 
         private void NumP2_ValueChanged(object sender, EventArgs e)
@@ -262,25 +161,21 @@ namespace WinFormInterface
         {
             trackP1.Value = Convert.ToInt32(numP1.Value);
             Enabled_Num();
-            sourceTextBox.Text = String.Empty;
+            sourceTextBox.Text = "0";
         }
 
         private void Enabled_Num()
         {
-            but2.Enabled = trackP1.Value > 2;
-            but3.Enabled = trackP1.Value > 3;
-            but4.Enabled = trackP1.Value > 4;
-            but5.Enabled = trackP1.Value > 5;
-            but6.Enabled = trackP1.Value > 6;
-            but7.Enabled = trackP1.Value > 7;
-            but8.Enabled = trackP1.Value > 8;
-            but9.Enabled = trackP1.Value > 9;
-            butA.Enabled = trackP1.Value > 10;
-            butB.Enabled = trackP1.Value > 11;
-            butC.Enabled = trackP1.Value > 12;
-            butD.Enabled = trackP1.Value > 13;
-            butE.Enabled = trackP1.Value > 14;
-            butF.Enabled = trackP1.Value > 15;
+            var numberRegex = new Regex(@"[2-9]");
+            var symbolRegex = new Regex(@"^[A-F]$");
+            foreach (Button b in this.Controls.OfType<Button>())
+            {
+                if (numberRegex.IsMatch(b.Text))
+                    b.Enabled = trackP1.Value > b.Text[0] - 48;
+
+                else if (symbolRegex.IsMatch(b.Text))
+                    b.Enabled = trackP1.Value > b.Text[0] - 55;
+            }
         }
 
         private void ButExecut_Click(object sender, EventArgs e)
